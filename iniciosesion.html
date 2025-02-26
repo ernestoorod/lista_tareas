@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../IMAGENES/icono.ico" type="image/x-icon">
+    <title>Taskly</title>
+    <link rel="stylesheet" href="./CSS/iniciosesion.css">
+</head>
+<body>
+    <div class="logo">
+        <a href="./index.html"><img src="./IMAGENES/logoblanco.png" alt="logo"></a>
+    </div>
+
+    <div class="iniciosesion">
+        <form id="formulario" action="./PHP/iniciosesion.php" method="POST">
+            <label for="nombreusuario">Nombre de usuario:</label>
+            <input type="text" id="nombreusuario" name="nombreusuario" required>
+            <label for="contrasena">Contraseña:</label>
+            <div class="campo-contrasena">
+                <input type="password" id="contrasena" name="contrasena" required>
+                <div class="ojo">
+                    <img src="./IMAGENES/ojocerrado.png" alt="ojocerrado" class="ojo-cerrado" style="display: inline;">
+                    <img src="./IMAGENES/ojoabierto.png" alt="ojoabierto" class="ojo-abierto" style="display: none;">
+                </div>
+            </div>
+            <button type="submit">Iniciar Sesión</button>
+        </form>         
+        <hr>
+        <p>¿No tienes cuenta?<a href="./registro.html">  REGISTRARTE</a></p>
+    </div>
+
+    <div class="overlay" id="overlay" style="display: none;"></div>
+
+    <div class="modal" id="modal-error" style="display: none;">
+        <div class="contenido">
+            <p>Nombre de usuario o contraseña incorrectos</p>
+            <button class="aceptarmodal">Aceptar</button>
+        </div>
+    </div>
+
+    <script src="./JS/iniciosesion.js"></script>
+</body>    
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="../IMAGENES/icono.ico" type="image/x-icon">
+    <title>Taskly</title>
+    <link rel="stylesheet" href="./CSS/añadirtarea.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="logo">
+                <a href="./PHP/principal.php">
+                    <img src="../IMAGENES/logoblanco.png" alt="logo">
+                    <p>TASKLY</p>
+                </a>
+            </div>
+            
+            <div class="cuenta">
+                <a class="cerrarsesion" href="./PHP/cierresesion.php">
+                    <p>Cerrar sesión</p>
+                </a>
+            </div>
+        </header>
+        <main>
+            <div class="añadirtarea">
+                <form action="./PHP/añadirtarea.php" method="post">
+                    <label for="nombretarea">Nombre de la tarea</label>
+                    <input type="text" name="nombretarea" id="nombretarea" required>
+                    
+                    <label for="fechainicio">Fecha de inicio de la tarea</label>
+                    <input type="date" name="fechainicio" id="fechainicio" required> 
+                    
+                    <label for="fechafin">Fecha de fin de la tarea</label>
+                    <input type="date" name="fechafin" id="fechafin" required>
+                    
+                    <label for="prioridad">Prioridad de la tarea</label>
+                    <div class="opciones">
+                        <input type="radio" name="prioridad" id="leve" value="leve" required>
+                        <label for="leve" class="leve">Leve</label>
+                        
+                        <input type="radio" name="prioridad" id="media" value="media">
+                        <label for="media" class="media">Media</label>
+                        
+                        <input type="radio" name="prioridad" id="alta" value="alta">
+                        <label for="alta" class="alta">Alta</label>
+                        
+                        <input type="radio" name="prioridad" id="inmediata" value="inmediata">
+                        <label for="inmediata" class="inmediata">Inmediata</label>
+                    </div>
+                    
+                    <input type="submit" class="botoncrear" value="Crear tarea">
+                </form>                
+            </div>
+        </main>
+    </div>
+</body>
+</html>

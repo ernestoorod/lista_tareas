@@ -1,0 +1,243 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana;
+}
+
+.container {
+    width: 100vw;
+    padding-bottom: 20px;
+    display: flex;
+    flex-flow: column;
+    background-color: #FFF2F2;
+}
+
+.container.auto-height {
+    height: auto;
+}
+
+.container.full-height {
+    height: 100vh;
+}
+
+
+header {
+    width: 97.4vw;
+    height: 70px;
+    display: flex;
+    flex-flow: row;
+    justify-content: space-around;
+    align-items: center;
+    background-color: #2D336B;
+    color: white;
+    font-size: 1.6rem;
+    padding: 0 20px;
+}
+
+.logo a{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo a p{
+    text-decoration: none;
+    color: white;
+}
+
+.cuenta{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.cuenta p{
+    font-size: 1.2rem;
+}
+
+.cerrarsesion{
+    font-size: 1.3rem;
+    text-decoration: none;
+    color: white;
+    transition: 0.5s color ease-in-out;
+}
+
+.cerrarsesion:hover{
+    color: #A9B5DF;
+}
+
+main{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.navegacionfechas {
+    display: flex;
+    gap: 20px;
+    font-size: 1.7rem;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: 20px;
+    justify-content: center;
+}
+
+.tareasopciones{
+    display: flex;
+    gap: 5px;
+}
+
+.agregartarea, .tareascompletadas, .favoritos {
+    width: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
+    border: 2px solid #2D336B;
+    background-color: #A9B5DF;
+    cursor: pointer;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.agregartarea:hover, .tareascompletadas:hover, .favoritos:hover {
+    background-color: #7886C7;
+}
+
+.agregartarea p , .tareascompletadas p , .favoritos p{
+    text-decoration: none;
+}
+
+table {
+    width: 80%;
+    margin-top: 20px;
+    border-collapse: collapse;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+    font-size: 1.2rem;
+    border-bottom: 1px solid #ddd;
+    text-align: center;
+}
+
+th {
+    background-color: #2D336B;
+    color: white;
+    font-weight: bold;
+    border:2.5px solid white;
+    border-bottom: none;
+}
+
+td {
+    border: 2.5px solid rgba(128, 128, 128, 0.4);
+    border-top: none;
+    background-color: #f9f9f9;
+}
+
+td div, td p{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+td img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+.acciones img{
+    width: 40px;height: 40px;
+}
+
+.acciones img:nth-of-type(1){
+    margin-right: 5px;
+    width: 30px;height: 30px;
+}
+
+td img:hover {
+    opacity: 0.8;
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF2F2;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.6);
+    width: 400px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.contenido {
+    position: relative;
+}
+
+.modal-content h2{
+    text-align: center;
+}
+
+.botones {
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.botones button {
+    font-size: 1.2rem;
+    width: 20%;
+    padding: 10px 20px;
+    background-color: #7886C7;
+    border-radius: 5px;
+    cursor: pointer;
+    border: 2px solid #2D336B;
+}
+
+.botones button:hover {
+    color: white;
+    background-color:#2D336B;
+}
+
+.prioridad {
+    font-weight: bold;
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
+.prioridad[data-prioridad="Leve"] {
+    background-color: green;
+    color: white;
+}
+
+.prioridad[data-prioridad="Media"] {
+    background-color: yellow;
+    color: white;
+}
+
+.prioridad[data-prioridad="Alta"] {
+    background-color: orange;
+    color: white;
+}
+
+.prioridad[data-prioridad="Inmediata"] {
+    background-color: red;
+    color: white;
+}

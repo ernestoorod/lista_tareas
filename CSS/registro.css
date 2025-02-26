@@ -1,0 +1,136 @@
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Verdana;
+}
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background-color: #2D336B;
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+}
+
+.logo {
+    width: 40px;
+    height: 40px;
+}
+
+.registro {
+    background-color: #FFF2F2;
+    padding: 10px;
+    border-radius: 10px;
+    text-align: center;
+}
+
+form {
+    width: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+label {
+    width: 250px;
+    margin-top: 10px;
+    text-align: center;
+}
+
+input {
+    padding: 8px;
+    margin-bottom: 10px;
+    width: 100%;
+    max-width: 300px;
+}
+
+input[type="submit"] {
+    width: 150px;
+    padding: 10px;
+    background-color: #7886C7;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px;
+    transition: all 0.5s linear; 
+}
+
+input[type="submit"]:hover {
+    color: white;
+    background-color: #2D336B;
+}
+
+.campo-contrasena {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.campo-contrasena input {
+    width: 400px;
+}
+
+.ojo {
+    position: absolute;
+    right: 10px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.ojo img {
+    width: 30px;
+    height: 30px;
+    margin-top: -10px;
+    pointer-events: none; 
+}
+
+.overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 1;
+}
+
+.modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FFF2F2;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.6);
+    width: 300px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 10px;
+    z-index: 2;
+}
+
+.contenido {
+    position: relative;
+}
+
+.aceptarmodal {
+    background-color: #7886C7;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+.aceptarmodal:hover {
+    color: white;
+    background-color:#2D336B;
+}
+
+

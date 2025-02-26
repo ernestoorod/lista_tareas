@@ -1,0 +1,47 @@
+body{
+    margin: 0;padding: 0;
+    font-family: Verdana;
+}
+
+.container{
+    width: 100vw;height: 100vh;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    background-color: #2D336B;
+}
+
+.logo{
+    display: flex;
+    gap: 5px;
+}
+
+.logo p{
+    font-size: 1.3rem;
+    color:#FFF2F2;
+}
+
+.enlaces{
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+}
+
+a{
+    width: 200px;height: auto;
+    padding: 15px;
+    background-color: #FFF2F2;
+    border-radius: 5px;
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.5);
+    text-decoration: none;
+    text-align: center;
+    color: black;
+    border: 3px solid #FFF2F2;
+    transition: all 0.3s linear;
+}
+
+a:hover{
+    border: 3px solid #7886C7;
+}
