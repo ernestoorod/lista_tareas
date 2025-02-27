@@ -1,20 +1,20 @@
 async function generarNombreTarea() {
     const apiKey = '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';
-    const url = 'https://openrouter.ai/api/v1';
+    const proxyUrl = 'https://cors-anywhere.herokuapp.com/https://openrouter.ai/api/v1/chat/completions';
 
     try {
-        const response = await fetch(url, {
+        const response = await fetch(proxyUrl, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': `Bearer ${apiKey}`
             },
             body: JSON.stringify({
-                model: "deepseek/deepseek-r1:free",
+                model: 'deepseek/deepseek-chat:free',
                 messages: [
                     {
                         role: "user",
-                        content: "Genera un nombre de tarea aleatorio"
+                        content: "Genera una tarea diaria de forma aleatoria, solo ponme de texto la tarea. Nada mas y solo una"
                     }
                 ]
             })
@@ -25,8 +25,10 @@ async function generarNombreTarea() {
         }
 
         const data = await response.json();
-        if (data && data.choices && data.choices.length > 0) {
+
+        if (data && data.choices && data.choices.length > 0 && data.choices[0].message) {
             const taskName = data.choices[0].message.content;
+            console.log(taskName);
             document.getElementById('nombretarea').value = taskName;
         } else {
             alert('No se pudo generar un nombre de tarea. Respuesta inesperada de la API.');
