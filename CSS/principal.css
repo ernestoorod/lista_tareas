@@ -222,7 +222,7 @@ td img:hover {
     border-radius: 5px;
 }
 
-.prioridad[data-prioridad="Leve"] {
+.prioridad[data-prioridad="Baja"] {
     background-color: green;
     color: white;
 }

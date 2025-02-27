@@ -162,7 +162,9 @@ $tareas = tarea::obtenerTareasPorUsuario($conexion, $idusuario, $filtro);
                             <div class="acciones">
                                 <img class="estrella-transparente" src="../IMAGENES/estrellasinfondo.png" alt="estrella transparente" style="<?php echo ($tarea->favorito == 1) ? 'display: none;' : ''; ?>">
                                 <img class="estrella-amarilla" src="../IMAGENES/estrellaamarilla.png" alt="estrella amarilla" style="<?php echo ($tarea->favorito == 1) ? 'display: flex;' : 'display: none;'; ?>">                            
-                                <img src="../IMAGENES/editar.png" alt="editar">
+                                <a href="editartarea.php?id=<?php echo $tarea->ID; ?>">
+                                    <img src="../IMAGENES/editar.png" alt="editar">
+                                </a>
                                 <a href="#" class="eliminar" data-tarea-id="<?php echo $tarea->ID; ?>">
                                     <img src="../IMAGENES/eliminar.png" alt="eliminar">
                                 </a>

@@ -63,7 +63,7 @@ main {
     align-items: center;
 }
 
-.añadirtarea {
+.editartarea {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -76,21 +76,21 @@ main {
     margin: auto;
 }
 
-.añadirtarea form {
+.editartarea form {
     width: 70%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
 
-.añadirtarea label {
+.editartarea label {
     font-size: 1.4rem;
     color: #FFF2F2;
     font-weight: bold;
 }
 
-.añadirtarea input[type="text"],
-.añadirtarea input[type="date"] {
+.editartarea input[type="text"],
+.editartarea input[type="date"] {
     font-size: 1.2rem;
     border: 2px solid #FFF2F2;
     border-radius: 5px;
@@ -111,7 +111,7 @@ main {
     width: 100%;
     text-align: center;
     border-radius: 5px;
-    border: 5px solid #2D336B;
+    border: 3px solid #2D336B;
 }
 
 .opciones input[type="radio"] {
@@ -123,7 +123,7 @@ main {
 }
 
 #baja:checked ~ .baja{
-    border: 5px solid green;
+    border: 3px solid green;
 }
 
 .media{
@@ -131,7 +131,7 @@ main {
 }
 
 #media:checked ~ .media{
-    border: 5px solid yellow;
+    border: 3px solid yellow;
 }
 
 .alta{
@@ -139,7 +139,7 @@ main {
 }
 
 #alta:checked ~ .alta{
-    border: 5px solid orange;
+    border: 3px solid orange;
 }
 
 .inmediata{
@@ -147,7 +147,7 @@ main {
 }
 
 #inmediata:checked ~ .inmediata{
-    border: 5px solid red;
+    border: 3px solid red;
 }
 
 .botoncrear{
