@@ -68,8 +68,9 @@ main {
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    position: relative;
     width: 60vw;
-    height: 500px;
+    height: 550px;
     background-color: #2D336B;
     border-radius: 10px;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
@@ -162,4 +163,19 @@ main {
 
 .botoncrear:hover{
     background-color: #7886C7;
+}
+
+.texto{
+    margin: 0;
+    padding: 0;
+    color: red;
+}
+
+.ia{
+    position: absolute;
+    right: 20px;top: 20px;
+}
+
+.ia img{
+    width: 40px;height: 40px;
 }

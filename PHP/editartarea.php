@@ -8,22 +8,35 @@ if (!isset($_SESSION['nombreusuario'])) {
 
 include_once './conexion.php';
 
+$mensajeError = '';
+
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $nombreTarea = $_POST['nombretarea'];
     $fechaInicio = $_POST['fechainicio'];
     $fechaFin = $_POST['fechafin'];
     $prioridad = $_POST['prioridad'];
     $id = $_GET['id'];
-    
-    $sqlUpdate = "UPDATE tareas SET nombretarea = ?, fechainicio = ?, fechafin = ?, prioridad = ? WHERE ID = ?";
-    $stmtUpdate = $conexion->prepare($sqlUpdate);
-    $stmtUpdate->bind_param("ssssi", $nombreTarea, $fechaInicio, $fechaFin, $prioridad, $id);
 
-    if ($stmtUpdate->execute()) {
-        header("Location: ./principal.php");
-        exit();
-    } else {
-        echo "Error al actualizar la tarea: " . $conexion->error;
+    if (empty($nombreTarea) || empty($fechaInicio) || empty($fechaFin) || empty($prioridad)) {
+        echo "Por favor, completa todos los campos.";
+        exit;
+    }
+
+    if (strtotime($fechaFin) < strtotime($fechaInicio)) {
+        $mensajeError = "La fecha de finalización no puede ser menor que la fecha de inicio.";
+    }
+
+    if (empty($mensajeError)) {
+        $sqlUpdate = "UPDATE tareas SET nombretarea = ?, fechainicio = ?, fechafin = ?, prioridad = ? WHERE ID = ?";
+        $stmtUpdate = $conexion->prepare($sqlUpdate);
+        $stmtUpdate->bind_param("ssssi", $nombreTarea, $fechaInicio, $fechaFin, $prioridad, $id);
+
+        if ($stmtUpdate->execute()) {
+            header("Location: ./principal.php");
+            exit();
+        } else {
+            echo "Error al actualizar la tarea: " . $conexion->error;
+        }
     }
 }
 
@@ -82,6 +95,7 @@ if (isset($_GET['id'])) {
                     <input type="date" name="fechainicio" id="fechainicio" value="<?php echo $tarea['fechainicio']; ?>" required> 
                     
                     <label for="fechafin">Fecha de fin de la tarea</label>
+                    <p class="texto"><?php echo $mensajeError; ?></p>
                     <input type="date" name="fechafin" id="fechafin" value="<?php echo $tarea['fechafin']; ?>" required>
                     
                     <label for="prioridad">Prioridad de la tarea</label>

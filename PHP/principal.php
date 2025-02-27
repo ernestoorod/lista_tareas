@@ -27,7 +27,7 @@ class tarea {
         $this->favorito = $favorito;
     }
 
-    public static function obtenerTareasPorUsuario($conexion, $idusuario, $filtro = null) {
+    public static function obtenerTareasPorUsuario($conexion, $idusuario, $filtro = null, $fecha = null) {
         $sql = "SELECT ID, nombretarea, fechainicio, fechafin, prioridad, completada, favorito 
                 FROM tareas 
                 WHERE idusuario = ?";
@@ -40,8 +40,17 @@ class tarea {
             $sql .= " AND completada = 0";
         }
 
+        if ($fecha) {
+            $sql .= " AND DATE(fechainicio) = ?";
+        }
+
         $stmt = $conexion->prepare($sql);
-        $stmt->bind_param("i", $idusuario);
+        if ($fecha) {
+            $stmt->bind_param("ss", $idusuario, $fecha);
+        } else {
+            $stmt->bind_param("s", $idusuario);
+        }
+
         $stmt->execute();
         $result = $stmt->get_result();
 
@@ -80,8 +89,11 @@ if ($result->num_rows > 0) {
 }
 
 $filtro = isset($_GET['filtro']) ? $_GET['filtro'] : null;
+$fecha = isset($_GET['fecha']) ? $_GET['fecha'] : null;
 
-$tareas = tarea::obtenerTareasPorUsuario($conexion, $idusuario, $filtro);
+$tareas = tarea::obtenerTareasPorUsuario($conexion, $idusuario, $filtro, $fecha);
+
+$no_tareas = empty($tareas);
 ?>
 
 <!DOCTYPE html>
@@ -110,18 +122,10 @@ $tareas = tarea::obtenerTareasPorUsuario($conexion, $idusuario, $filtro);
             </div>
         </header>
         <main>
-            <div class="navegacionfechas">
-                <div id="prevDate" class="flecha"> < </div>
-                <div class="fecha" id="fecha"></div>
-                <div id="nextDate" class="flecha"> > </div>
-            </div>
-
             <div class="tareasopciones">
-                <a href="../añadirtarea.html">
-                    <div class="agregartarea">
-                        <div>+ Agregar Tarea</div>
-                    </div>
-                </a>
+                <div class="agregartarea">
+                    <a href="./añadirtarea.php"><div>+ Agregar Tarea</div></a>
+                </div>
                 <div class="tareascompletadas">
                     <a href="?filtro=completadas"><div>Tareas Completadas</div></a>
                 </div>
@@ -129,6 +133,12 @@ $tareas = tarea::obtenerTareasPorUsuario($conexion, $idusuario, $filtro);
                     <a href="?filtro=favoritos"><div>Favoritos</div></a>
                 </div>
             </div>
+
+            <form method="GET" action="" class="filtrarfecha">
+                    <label for="fecha">Filtrar por Fecha:</label>
+                    <input type="date" id="fecha" name="fecha">
+                    <button type="submit">Filtrar</button>
+            </form>
 
             <table class="tareas">
                 <thead>
@@ -142,53 +152,71 @@ $tareas = tarea::obtenerTareasPorUsuario($conexion, $idusuario, $filtro);
                     </tr>
                 </thead>
                 <tbody>
-                    <?php foreach ($tareas as $tarea): ?>
-                    <tr>
-                        <td class="checkear">
-                            <div class="check-container" data-id="<?php echo $tarea->ID; ?>">
-                                <img src="../IMAGENES/circulo.png" alt="circulo" class="check-icon" style="<?php echo ($tarea->completada == 1) ? 'display: none;' : ''; ?>">
-                                <img src="../IMAGENES/cheque.png" class="check" alt="check" style="<?php echo ($tarea->completada == 1) ? 'display: flex;' : 'display: none;'; ?>">
-                            </div>  
-                        </td>
-                        <td><p><?php echo $tarea->nombre; ?></p></td>
-                        <td><p><?php echo date('d/m/Y', strtotime($tarea->fecha_inicio)); ?></p></td>
-                        <td><p><?php echo date('d/m/Y', strtotime($tarea->fecha_finalizacion)); ?></p></td>
-                        <td>
-                            <p class="prioridad" data-prioridad="<?php echo $tarea->prioridad; ?>">
-                                <?php echo $tarea->prioridad; ?>
-                            </p>
-                        </td>
-                        <td>
-                            <div class="acciones">
-                                <img class="estrella-transparente" src="../IMAGENES/estrellasinfondo.png" alt="estrella transparente" style="<?php echo ($tarea->favorito == 1) ? 'display: none;' : ''; ?>">
-                                <img class="estrella-amarilla" src="../IMAGENES/estrellaamarilla.png" alt="estrella amarilla" style="<?php echo ($tarea->favorito == 1) ? 'display: flex;' : 'display: none;'; ?>">                            
-                                <a href="editartarea.php?id=<?php echo $tarea->ID; ?>">
-                                    <img src="../IMAGENES/editar.png" alt="editar">
-                                </a>
-                                <a href="#" class="eliminar" data-tarea-id="<?php echo $tarea->ID; ?>">
-                                    <img src="../IMAGENES/eliminar.png" alt="eliminar">
-                                </a>
-                            </div>
-                        </td>
-                    </tr>
+                    <?php if ($no_tareas): ?>
+                        <tr>
+                            <td colspan="6" style="text-align: center;">
+                                <?php
+                                if ($filtro == 'completadas') {
+                                    echo "No hay tareas completadas.";
+                                } elseif ($filtro == 'favoritos') {
+                                    echo "No hay tareas favoritas.";
+                                } elseif ($fecha) {
+                                    echo "No hay tareas este día.";
+                                } else {
+                                    echo "No hay tareas por realizar.";
+                                }
+                                ?>
+                            </td>
+                        </tr>
+                    <?php else: ?>
+                        <?php foreach ($tareas as $tarea): ?>
+                        <tr>
+                            <td class="checkear">
+                                <div class="check-container" data-id="<?php echo $tarea->ID; ?>">
+                                    <img src="../IMAGENES/circulo.png" alt="circulo" class="check-icon" style="<?php echo ($tarea->completada == 1) ? 'display: none;' : ''; ?>">
+                                    <img src="../IMAGENES/cheque.png" class="check" alt="check" style="<?php echo ($tarea->completada == 1) ? 'display: flex;' : 'display: none;'; ?>">
+                                </div>  
+                            </td>
+                            <td><p><?php echo $tarea->nombre; ?></p></td>
+                            <td><p><?php echo date('d/m/Y', strtotime($tarea->fecha_inicio)); ?></p></td>
+                            <td><p><?php echo date('d/m/Y', strtotime($tarea->fecha_finalizacion)); ?></p></td>
+                            <td>
+                                <p class="prioridad" data-prioridad="<?php echo $tarea->prioridad; ?>">
+                                    <?php echo $tarea->prioridad; ?>
+                                </p>
+                            </td>
+                            <td>
+                                <div class="acciones">
+                                    <img class="estrella-transparente" src="../IMAGENES/estrellasinfondo.png" alt="estrella transparente" style="<?php echo ($tarea->favorito == 1) ? 'display: none;' : ''; ?>">
+                                    <img class="estrella-amarilla" src="../IMAGENES/estrellaamarilla.png" alt="estrella amarilla" style="<?php echo ($tarea->favorito == 1) ? 'display: flex;' : 'display: none;'; ?>">                            
+                                    <a href="editartarea.php?id=<?php echo $tarea->ID; ?>">
+                                        <img src="../IMAGENES/editar.png" alt="editar">
+                                    </a>
 
-                    <div class="overlay" id="overlay" style="display: none;"></div>
-
-                    <div id="modalEliminar_<?php echo $tarea->ID; ?>" class="modal" style="display: none;">
-                        <div class="contenido">
-                            <h2>¿Estás seguro de que deseas eliminar esta tarea?</h2>
-                            <div class="botones">
-                                <button class="confirmarEliminar" data-tarea-id="<?php echo $tarea->ID; ?>">Sí</button>
-                                <button class="cancelarEliminar">No</button>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <?php endforeach; ?>
+                                    <a href="#" class="eliminar" data-tarea-id="<?php echo $tarea->ID; ?>">
+                                        <img src="../IMAGENES/eliminar.png" alt="eliminar">
+                                    </a>
+                                </div>
+                            </td>
+                        </tr>
+                        <?php endforeach; ?>
+                    <?php endif; ?>
                 </tbody>
             </table>
         </main>
     </div>
+
+    <div id="modalEliminar" class="modal" style="display: none;">
+        <div class="contenido">
+            <h2>¿Estás seguro de que deseas eliminar esta tarea?</h2>
+            <div class="botones">
+                <button class="confirmarEliminar">Sí</button>
+                <button class="cancelarEliminar">No</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="overlay" id="overlay" style="display: none;"></div>
 
     <script src="../JS/principal.js"></script>
 </body>

@@ -40,7 +40,7 @@ header {
     gap: 20px;
 }
 
-.logo a p{
+.logo a{
     text-decoration: none;
     color: white;
 }
@@ -107,8 +107,30 @@ main{
     background-color: #7886C7;
 }
 
-.agregartarea p , .tareascompletadas p , .favoritos p{
+.agregartarea a , .tareascompletadas a , .favoritos a{
     text-decoration: none;
+}
+
+.agregartarea p , .tareascompletadas p , .favoritos p{
+    color: black;
+}
+
+.filtrarfecha{
+    display: flex;
+    flex-flow: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    width: 500px;
+    padding: 30px;
+    border-radius: 5px;
+    font-size: 1.3rem;
+    border: 2px solid #2D336B;
+    background-color: #A9B5DF;
+}
+
+.filtrarfecha div input, .filtrarfecha div button{
+    padding: 5px;
 }
 
 table {
