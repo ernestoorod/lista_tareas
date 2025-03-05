@@ -1,6 +1,9 @@
 <?php 
+// Incluye el archivo de la conexion a la base de datos
 include_once './conexion.php';
 
+
+// Define la clase tarea
 class tarea {
     public $ID;
     public $nombre;
@@ -8,6 +11,7 @@ class tarea {
     public $fecha_finalizacion;
     public $prioridad;
 
+    // Construye la clase tarea
     public function __construct($ID, $nombre, $fecha_inicio, $fecha_finalizacion, $prioridad) {
         $this->ID = $ID;
         $this->nombre = $nombre;
@@ -16,6 +20,7 @@ class tarea {
         $this->prioridad = $prioridad;
     }
 
+    // Crea un metodo obtenerTareas el cual servira para coger las tareas de la base de datos
     public static function obtenerTareas($conexion) {
         $sql = "SELECT ID, nombre, fecha_inicio, fecha_finalizacion, prioridad FROM tareas";
         $result = $conexion->query($sql);
@@ -37,6 +42,7 @@ class tarea {
     }
 }
 
+// Llama al metodo obtener tareas para la visualización
 $tareas = tarea::obtenerTareas($conexion);
 
 foreach ($tareas as $tarea) {
