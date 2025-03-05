@@ -170,3 +170,11 @@ document.querySelectorAll(".acciones").forEach(function (acciones) {
             .then((data) => console.log(data));
     });
 });
+
+document.getElementById('menu-btn').addEventListener('click', function() {
+    document.getElementById('offcanvas').classList.add('open');
+});
+
+document.getElementById('close-btn').addEventListener('click', function() {
+    document.getElementById('offcanvas').classList.remove('open');
+});

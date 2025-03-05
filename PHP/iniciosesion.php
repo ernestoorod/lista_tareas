@@ -1,6 +1,12 @@
 <?php
 session_start();
-include 'conexion.php';
+include('conexion.php');
+
+if (!$conexion) {
+    die("Error de conexión: " . mysqli_connect_error());
+}
+
+echo "Conexión exitosa a la base de datos.<br>";
 
 $nombreusuario = $_POST['nombreusuario'];
 $contrasena = $_POST['contrasena'];

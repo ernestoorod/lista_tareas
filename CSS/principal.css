@@ -34,15 +34,27 @@ header {
     padding: 0 20px;
 }
 
-.logo a{
+.logoymenu{
+    display: flex;
+    flex-flow: row;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;  
+}
+
+.logoymenu a{
     display: flex;
     align-items: center;
     gap: 20px;
 }
 
-.logo a{
+.logoymenu a{
     text-decoration: none;
     color: white;
+}
+
+.menu img{
+    width: 40px;height: 40px;
 }
 
 .cuenta{
@@ -109,9 +121,6 @@ main{
 
 .agregartarea a , .tareascompletadas a , .favoritos a{
     text-decoration: none;
-}
-
-.agregartarea p , .tareascompletadas p , .favoritos p{
     color: black;
 }
 

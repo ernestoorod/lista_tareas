@@ -108,7 +108,11 @@ $no_tareas = empty($tareas);
 <body>
     <div class="container">
         <header>
-            <div class="logo">
+            <div class="logoymenu">
+                <div class="menu">
+                    <img src="../IMAGENES/menu.png" alt="menu">
+                </div>
+                <div class="logo"></div>
                 <a href="./principal.php">
                     <img src="../IMAGENES/logoblanco.png" alt="logo">
                     <p>TASKLY</p>
@@ -122,7 +126,7 @@ $no_tareas = empty($tareas);
             </div>
         </header>
         <main>
-            <div class="tareasopciones">
+             <div class="tareasopciones">
                 <div class="agregartarea">
                     <a href="./añadirtarea.php"><div>+ Agregar Tarea</div></a>
                 </div>
@@ -132,13 +136,13 @@ $no_tareas = empty($tareas);
                 <div class="favoritos">
                     <a href="?filtro=favoritos"><div>Favoritos</div></a>
                 </div>
-            </div>
+            </div> 
 
-            <form method="GET" action="" class="filtrarfecha">
+            <!-- <form method="GET" action="" class="filtrarfecha">
                     <label for="fecha">Filtrar por Fecha:</label>
                     <input type="date" id="fecha" name="fecha">
                     <button type="submit">Filtrar</button>
-            </form>
+            </form> -->
 
             <table class="tareas">
                 <thead>

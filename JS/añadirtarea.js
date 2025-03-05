@@ -14,7 +14,7 @@ async function generarNombreTarea() {
                 messages: [
                     {
                         role: "user",
-                        content: "Genera una tarea diaria de forma aleatoria. Nada mas y solo una"
+                        content: "Genera una tarea corta, ejemplo comer o dormir. Cambiame la tarea de una respuesta a otra. Sacame solo una tarea."
                     }
                 ]
             })
